@@ -1,0 +1,32 @@
+yum update
+yum install docker
+yum install etcd
+yum install kubernetes-master
+yum install kubernetes-node
+
+service docker start
+service etcd start
+service kube-apiserver start
+service kube-scheduler start
+service kube-controller-manager start
+
+service kubelet start
+service kube-proxy start
+
+kubectl run test --image=nginx
+
+>>Problem 1:
+kubectl describe rs ==> Error creating: No API token found for service account "default", retry after the token is automatically created and added to the service account
+vi /etc/kubernetes/apiserver
+KUBE_ADMISSION_CONTROL=""
+
+>>Problem 2:
+kubectl describe pod test ==> FailedSync      Error syncing pod, skipping: failed to "StartContainer" for "POD" with ErrImagePull: "image pull failed for registry.access.redhat.com/rhel7/pod-infrastructure:latest, this may be because there are no credentials on this request.  details: (open /etc/docker/certs.d/registry.access.redhat.com/redhat-ca.crt: no such file or directory)"
+yum install wget
+wget http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm
+rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout ./etc/rhsm/ca/redhat-uep.pem | tee /etc/rhsm/ca/redhat-uep.pem
+docker pull registry.access.redhat.com/rhel7/pod-infrastructure:latest
+
+kubectl expose deployment test --type=LoadBalancer --image-pull-policy=Never
+kubectl get service
+curl 127.0.0.1:30194
