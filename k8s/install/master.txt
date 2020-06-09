@@ -39,10 +39,43 @@ EOF
 
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
+#kubeadm config images pull
 
-yum -y install kubeadm
-systemctl enable kubelet
-systemctl start kubelet
+kubeadm config images list
+
+# 下面的镜像应该去除"k8s.gcr.io/"的前缀，版本换成上面获取到的版本
+images=(
+kube-apiserver:v1.18.3
+kube-controller-manager:v1.18.3
+kube-scheduler:v1.18.3
+kube-proxy:v1.18.3
+pause:3.2
+etcd:3.4.3-0
+coredns:1.6.7
+)
+
+for imageName in ${images[@]} ; do
+    docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/$imageName
+    docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/$imageName k8s.gcr.io/$imageName
+    docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/$imageName
+done
 
 
-kubeadm join 192.168.60.201:6443 --token m2m8df.r92f9hlx2lsezku0 --discovery-token-ca-cert-hash sha256:969229d014d531a9f3a0b1055e8f0ff9bccdcabddc68d1296cc81892b14bdda1 
+
+kubeadm init
+
+#kubeadm join 1.1.1.201:6443 --token jbibfb.k99wnhjcjejc2hu7 --discovery-token-ca-cert-hash sha256:6d268d4c0feb52009b143651ad12292859f8464f6da66998e4b32d31efef8a71 
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl get nodes
+
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+
+
+# kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bootstrapper --group=system:bootstrappers
+
+kubectl get nodes
