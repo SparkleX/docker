@@ -1,0 +1,6 @@
+#/etc/sysconfig/network-scripts/ifcfg-ens33
+BOOTPROTO="dhcp|static"
+IPADDR=192.168.60.201
+NETMASK=255.255.255.0
+GATEWAY=192.168.60.1
+PREFIX=24

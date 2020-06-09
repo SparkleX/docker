@@ -1,0 +1,36 @@
+export no_proxy=localhost,127.0.0.0/8,192.168.60.0/24
+
+kubeadm reset
+swapoff -a
+vi /etc/fstab
+
+kubeadm init
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubeadm join 192.168.60.201:6443 --token m2m8df.r92f9hlx2lsezku0 --discovery-token-ca-cert-hash sha256:969229d014d531a9f3a0b1055e8f0ff9bccdcabddc68d1296cc81892b14bdda1 
+
+
+# export kubever=$(kubectl version | base64 | tr -d '\n')
+# kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever
+
+
+
+systemctl start kubelet
+systemctl status kubelet
+kubectl get nodes
+
+
+
+kubectl --server=16.187.189.90:8080 get pod -o wide
+
+kubectl config view
+kubectl config set-cluster kubernetes --server=https://192.168.60.201:6443
+
+kubectl drain <node-name>
+kubectl delete node <node-name>
+
+
+journalctl -u kubelet
