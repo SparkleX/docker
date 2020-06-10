@@ -4,6 +4,8 @@ cat <<EOF>> /etc/hosts
 192.168.60.203 node-2 worker-node-2
 EOF
 
+swapoff -a
+vi /etc/fstab
 
 setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
@@ -83,3 +85,6 @@ kubectl get nodes
 
 # For single machine master node
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
+
+kubeadm token list

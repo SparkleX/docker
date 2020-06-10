@@ -4,6 +4,8 @@ cat <<EOF>> /etc/hosts
 192.168.60.203 node-2 worker-node-2
 EOF
 
+swapoff -a
+vi /etc/fstab
 
 setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
@@ -46,3 +48,9 @@ systemctl start kubelet
 
 
 kubeadm join 192.168.60.201:6443 --token m2m8df.r92f9hlx2lsezku0 --discovery-token-ca-cert-hash sha256:969229d014d531a9f3a0b1055e8f0ff9bccdcabddc68d1296cc81892b14bdda1 
+
+
+kubeadm join --token fv7bqh.3p0mapk0ynql25is 192.168.60.201:6443 --discovery-token-unsafe-skip-ca-verification
+
+
+#driver in folder /opt/cni/bin
