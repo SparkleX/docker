@@ -1,0 +1,3 @@
+kubectl apply -f nginx-ingress.yml 
+
+kubectl describe ingress nginx-ingress
