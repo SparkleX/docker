@@ -1,0 +1,8 @@
+kubectl create -f balance.yml
+
+
+#kubectl run discovery –image=myproject/myimage –image-pull-policy=Never –port=8761
+
+
+
+kubectl get svc
