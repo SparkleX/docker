@@ -8,3 +8,6 @@ yum -y install docker-ce --nobest
 
 systemctl enable docker
 systemctl start docker
+
+#behind proxy
+https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
