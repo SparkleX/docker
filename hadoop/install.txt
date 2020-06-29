@@ -1,0 +1,12 @@
+sudo apt update
+sudo apt install openjdk-8-jdk -y
+sudo adduser hdoop
+su - hdoop
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
+ssh localhost
+wget https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+tar xzf hadoop-3.2.1.tar.gz
+cat /etc/group | grep 'sudo'
+sudo usermod -G 27 hdoop

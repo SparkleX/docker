@@ -1,0 +1,12 @@
+wget https://mirror.bit.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
+tar -xzvf apache-hive-3.1.2-bin.tar.gz
+sudo nano .bashrc
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:$HIVE_HOME/bin
+source ~/.bashrc
+
+cd /usr/local/hive/conf
+cp hive-env.sh.template hive-env.sh
+cp hive-default.xml.template hive-default.xml
+cp hive-log4j2.properties.template hive-log4j2.properties
+cp hive-exec-log4j2.properties.template hive-exec-log4j2.properties

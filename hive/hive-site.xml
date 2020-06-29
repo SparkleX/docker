@@ -1,0 +1,29 @@
+
+<property>
+      <name>javax.jdo.option.ConnectionUserName</name>
+      <value>root</value>
+  </property>
+  <property>
+      <name>javax.jdo.option.ConnectionPassword</name>
+      <value>root</value>
+  </property>
+  <property>
+      <name>javax.jdo.option.ConnectionURL</name>
+      <value>jdbc:mysql://192.168.110.253:3306/hive</value>
+  </property>
+  <property>
+      <name>javax.jdo.option.ConnectionDriverName</name>
+      <value>com.mysql.jdbc.Driver</value>
+  </property>
+  <property>
+      <name>hive.metastore.schema.verification</name>
+      <value>false</value>
+  </property>
+  <property>
+    <name>datanucleus.schema.autoCreateAll</name>
+    <value>true</value>
+ </property>
+
+create user 'hdoop'@'localhost' identified by '1234';
+grant all privileges on *.* to 'hdoop'@'localhost' with grant option
+flush privileges; 

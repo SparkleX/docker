@@ -1,0 +1,8 @@
+show databases;
+create database test;
+create table if not exists employee (eid int,name String,salary String,destination String)
+comment 'employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
