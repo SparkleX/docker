@@ -1,0 +1,27 @@
+Create Index
+
+PUT http://localhost:9200/[IndexName]
+
+Search
+http://localhost:9200/[IndexName]/_search
+
+Get By Key
+http://localhost:9200/book/1/1
+
+
+
+
+Create (Auto ID)
+POST http://localhost:9200/[index_name]/1
+{
+  "name":  "AAA"
+}
+
+Create OR Update
+PUT http://localhost:9200/[index_name]/1/[id]
+{
+  "name":  "AAA"
+}
+Delete (Delete)
+
+PUT http://localhost:9200/[index_name]/1/[id]

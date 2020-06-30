@@ -1,0 +1,85 @@
+Search
+http://localhost:9200/book/_search?q=name:BBB
+
+POST http://localhost:9200/book/_search
+{
+    "query" : {
+        "match" : {
+            "name" : "BBB"
+        }
+    }
+}
+
+
+GET /megacorp/employee/_search
+{
+    "query" : {
+        "match" : {
+            "about" : "rock climbing"
+        }
+    }
+}
+
+Full Index Search
+POST http://localhost:9200/book/_search
+{
+    "query" : {
+        "match" : {
+            "name" : "rock climbing"
+        }
+    }
+}
+
+
+POST http://localhost:9200/book/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "name" : "rock climbing"
+        }
+    }
+}
+
+High Light
+POST http://localhost:9200/book/_search
+{
+    "query" : {
+        "match_phrase" : {
+            "name" : "rock climbing"
+        }
+    },
+    "highlight": {
+        "fields" : {
+            "about" : {}
+        }
+    }
+}
+
+Group By
+POST http://localhost:9200/book/_search
+{
+  "aggs": {
+    "all_interests": {
+      "terms": {
+        "field": "score"
+      }
+    }
+  }
+}
+
+Group By Two Level
+POST http://localhost:9200/book/_search
+{
+  "aggs": {
+    "all_interests": {
+      "terms": {
+        "field": "l1"
+      },
+      "aggs" : {
+                "avg_age" : {
+                    "avg" : { "field" : "l2" }
+                }
+        }
+    }
+  }
+}

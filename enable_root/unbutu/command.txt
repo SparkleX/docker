@@ -1,0 +1,18 @@
+sudo -i passwd root
+
+
+sudo apt install openssh-server
+sudo systemctl status ssh
+
+#Enable Root for openssh
+#Add "PermitRootLogin yes" to /etc/ssh/sshd_config
+#sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+
+#Enable XWindow
+nano /etc/gdm3/custom.conf
+AllowRoot=true
+
+nano /etc/pam.d/gdm-password
+#auth   required        pam_succeed_if.so user != root quiet_success
+

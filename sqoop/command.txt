@@ -1,0 +1,1 @@
+sqoop import --connect "jdbc:sqlserver://10.58.81.109:1433;databaseName=BIG" --username sa --password 12345678 --target-dir /test1 --table Account --fields-terminated-by '\t'

@@ -1,0 +1,9 @@
+JDK11
+
+./bin/elasticsearch
+
+curl http://localhost:9200/?pretty
+
+optional:
+
+elasticsearch-head chrome plugin

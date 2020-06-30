@@ -3,7 +3,7 @@ export https_proxy=...
 curl https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
 
 yum -y install docker-ce --nobest
-
+sudo groupadd docker
 # usermod -aG docker ${USER}
 
 systemctl enable docker
