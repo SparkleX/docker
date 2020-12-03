@@ -1,0 +1,11 @@
+
+Install suse 15.1
+
+SUSEConnect -p sle-module-containers/15.1/x86_64 
+
+zypper in docker
+
+systemctl enable docker.service
+systemctl start docker
+
+pip install docker-compose

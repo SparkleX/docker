@@ -1,1 +1,11 @@
 docker build -t project1 .
+
+
+
+docker build -t b1-app-svc-build  . -f DfBuild
+
+
+docker run b1-app-svc-build tar -c -C /root dist resources package.json package-lock.json > build.tar
+
+
+docker build -t b1-app-svc .
