@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sunxufei-sha
+  labels:
+    app: sha
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sha
+  template:
+    metadata:
+      labels:
+        app: sha
+    spec:
+      containers:
+      - name: sha
+        image: sunxufei/sha
+        imagePullPolicy: Never
+        ports:
+        - name: http
+          containerPort: 3000

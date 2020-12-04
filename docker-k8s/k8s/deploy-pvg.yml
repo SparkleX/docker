@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sunxufei-pvg
+  labels:
+    app: pvg
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pvg
+  template:
+    metadata:
+      labels:
+        app: pvg
+    spec:
+      containers:
+      - name: pvg
+        image: sunxufei/pvg
+        imagePullPolicy: Never
+        ports:
+        - name: http
+          containerPort: 3000
