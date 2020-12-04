@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: sunxufei-svc1-ingress
+  name: sunxufei-ingress
 spec:
   rules:
   - http:
@@ -10,14 +10,14 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: sunxufei-service-sha
+            name: sunxufei-sha
             port: 
               number: 3000
       - path: /pvg
         pathType: Prefix
         backend:
           service:
-            name: sunxufei-service-pvg
+            name: sunxufei-pvg
             port: 
               number: 3000     
       #host: tomcat.henry.com
