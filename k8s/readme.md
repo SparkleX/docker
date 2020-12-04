@@ -2,8 +2,8 @@
 1) 列表
    kubectl get pod
 2) 创建
-   kubectl create -f pod.yml
-   kubectl apply -f pod.yml
+   kubectl create -f deploy.yml
+   kubectl apply -f deploy.yml
 3) 删除
    kubectl delete pod [ name ]
    kubectl delete pod sunxufei-pod
@@ -23,6 +23,6 @@
    kubectl expose deployment sunxufei-svc1  --type=LoadBalancer --port=81 --target-port=3001
 
 # Ingress
-安装 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/baremetal/deploy.yaml
+安装 kubectl apply -f kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/cloud/deploy.yaml
 检查 kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --watch
 
